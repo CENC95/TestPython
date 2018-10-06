@@ -18,7 +18,7 @@ def gradient_func(X, y, theta, m):
 	return (1. / m) * np.dot(np.transpose(X), diff)
 
 def gradient_descent(X, y, alpha, m):
-	theta = np.array([10, 1]).reshape(2, 1)
+	theta = np.array([1, 1, 1]).reshape(3, 1)
 	gradient = gradient_func(X, y, theta, m)
 	while not np.all(np.absolute(gradient) <= 1e-2):
 		theta = theta - alpha * gradient
@@ -32,15 +32,16 @@ def main():
 
 	m = len(items)
 
-	X0 = np.arange(1, m+1).reshape(m, 1)
-	X1 = np.arange(1, m+1).reshape(m, 1)
-	y = np.arange(1, m+1).reshape(m, 1)
+	X0 = np.ones((1, m)).reshape(m, 1)
+	X1 = np.ones((1, m)).reshape(m, 1)
+	X2 = np.ones((1, m)).reshape(m, 1)
+	y = np.ones((1, m)).reshape(m, 1)
 
 	for i in range(len(items)):
 		y[i] = float(items[i][0])
-		X0[i] = float(items[i][3]) #price
-		X1[i] = float(items[i][1]) #bedroom
-	X = np.hstack((X0, X1))
+		X1[i] = float(items[i][3]) #price
+		X2[i] = float(items[i][1]) #bedroom
+	X = np.hstack((X0, X1, X2))
 
 	print(gradient_descent(X, y, 0.0001, m))
 

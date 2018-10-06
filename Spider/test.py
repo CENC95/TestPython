@@ -28,4 +28,5 @@ theta = np.array([1, 1, 1]).reshape(3, 1)
 
 diff = np.dot(X, theta)
 
-print(diff)
+X9 = np.ones((1, 20)).reshape(20, 1)
+print(X9)
